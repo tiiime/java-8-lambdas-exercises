@@ -5,6 +5,8 @@ import com.insightfullogic.java8.examples.chapter1.SampleData;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Optional;
+
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 
@@ -14,8 +16,8 @@ public class ArtistsTest {
 
     @Test
     public void indexWithinRange() {
-        Artist artist = optionalExamples.getArtist(0);
-        assertNotNull(artist);
+        Optional<Artist> artist = optionalExamples.getArtist(0);
+        assertNotNull(artist.get());
     }
 
     @Test(expected = IllegalArgumentException.class)

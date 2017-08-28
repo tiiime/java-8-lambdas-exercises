@@ -1,14 +1,12 @@
 package com.insightfullogic.java8.exercises.chapter2;
 
-import com.insightfullogic.java8.exercises.Exercises;
-
 import javax.swing.text.DateFormatter;
-
-import static java.lang.ThreadLocal.withInitial;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class Question2 {
 
     public static ThreadLocal<DateFormatter> formatter
-            = Exercises.replaceThisWithSolution();
+            = ThreadLocal.withInitial(() -> new DateFormatter(new SimpleDateFormat("dd-MMM-yyyy", Locale.US)));
 
 }

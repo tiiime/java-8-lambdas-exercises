@@ -5,8 +5,9 @@ import java.util.List;
 public class BuggyReduce {
 
     public static int multiplyThrough(List<Integer> linkedListOfNumbers) {
-        return linkedListOfNumbers.stream()
-                                  .reduce(5, (acc, x) -> x * acc);
+        return 5 * linkedListOfNumbers.stream()
+                .parallel()
+                .reduce(1, (acc, x) -> x * acc);
     }
 
 }

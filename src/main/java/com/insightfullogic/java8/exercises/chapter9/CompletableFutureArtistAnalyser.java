@@ -16,11 +16,16 @@ public class CompletableFutureArtistAnalyser implements ArtistAnalyzer {
     }
 
     public void isLargerGroup(String artistName, String otherArtistName, Consumer<Boolean> handler) {
-        Exercises.replaceThisWithSolution();
+        CompletableFuture<Long> otherArtistMemberCount = CompletableFuture.supplyAsync(() -> getNumberOfMembers(otherArtistName));
+
+        CompletableFuture<Long> artistMemberCount = CompletableFuture.completedFuture(getNumberOfMembers(artistName));
+
+        artistMemberCount.thenCombine(otherArtistMemberCount, (count, otherCount) -> count > otherCount)
+                .thenAccept(handler::accept);
     }
 
     private long getNumberOfMembers(String artistName) {
-        return Exercises.replaceThisWithSolution();
+        return artistLookupService.apply(artistName).getMembers().count();
     }
 
 }
